@@ -1,6 +1,7 @@
 # dockerfile for logstash 2.1
 
 > Logstash 是一款用来收集、处理和转发事件和日志消息的工具。它可以通过配置文件与众多的插件关联，包括未经处理的 socket/packet 通讯，文件tailing和各类消息总线客户端。一旦输入插件收集到了日志以后，就可以通过大量的过滤器修改或者注释事件数据。最终事件会路由到输出插件，可以对接外部的程序中，包括Elasticsearch、本地文件和各类消息总线中间件。
+> 
 > 更详细的信息参见: [ 官方wiki ](https://wikitech.wikimedia.org/wiki/Logstash)
 
 
