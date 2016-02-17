@@ -54,7 +54,10 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
 else
 cat > $CONFDIR/default_input.conf << EOF
 input {
-  stdin {
+  exec {
+    command => "echo 'Please associate at least one application!'"
+    interval => 10
+    type => "warning"
   }
 }
 EOF
