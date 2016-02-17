@@ -52,7 +52,7 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
     /data/config/${service_name}_input.conf
   done
 else
-cat >> $CONFDIR/default_input.conf << EOF
+cat > $CONFDIR/default_input.conf < EOF
 input {
   stdin {
   }
