@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 CONFDIR="/data/config"
 CONFURI="http://config.goodrain.me/apps/logstash"
