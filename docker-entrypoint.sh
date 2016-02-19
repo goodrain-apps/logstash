@@ -48,7 +48,7 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
     cp /tmp/input.tpl /data/config/${service_name}_input.conf
     sed -i -e "s/SERVICE_ID/$service_id/" \
     -e "s/SERVICE_NAME/$service_name/" \
-    -e "s/ZMQ_IP/$ZMQ_IP/"
+    -e "s/ZMQ_IP/$ZMQ_IP/" \
     /data/config/${service_name}_input.conf
   done
 else
