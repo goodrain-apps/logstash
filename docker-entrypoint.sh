@@ -51,6 +51,7 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
     -e "s/ZMQ_IP/$ZMQ_IP/" \
     /data/config/${service_name}_input.conf
   done
+  [ -e $CONFDIR/default_input.conf ] && rm -f $CONFDIR/default_input.conf
 else
 cat > $CONFDIR/default_input.conf << EOF
 input {
