@@ -1,5 +1,11 @@
 FROM java:8-jre
 
+# add our user and group first to make sure their IDs get assigned consistently
+RUN groupadd -r -g 200 logstash && useradd -u 200 -r -m -g logstash logstash
+
+# Timezone
+RUN echo "Asia/Shanghai" > /etc/timezone;dpkg-reconfigure -f noninteractive tzdata
+
 # install plugin dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libzmq3 \
