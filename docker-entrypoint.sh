@@ -15,6 +15,9 @@ ELASTICSEARCH_PORT=${ELASTICSEARCH_PORT:-9200}
 # 初始化创建目录
 [ ! -d $CONFDIR ] && mkdir $CONFDIR
 
+# 清理旧input配置文件
+find  $CONFDIR  -name '*_input.conf' -delete
+
 # 获取配置文件
 if [ "$MEMORY_SIZE" == "" ];then
   echo "Must set MEMORY_SIZE environment variable! "
