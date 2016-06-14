@@ -77,7 +77,7 @@ sed -i -e "s/ELASTICSEARCH_HOST/$ELASTICSEARCH_HOST/" \
 #===========================================
 
 # change ownner
-chown 200.200 $CONFDIR -R 
+chown logstash.logstash $CONFDIR -R 
 
 # Add logstash as command if needed
 if [ "${1:0:1}" = '-' ]; then
