@@ -70,10 +70,13 @@ fi
 IFS=$oldIFS  #还原IFS为默认值
 
 # output
-sed -i -e "s/ELASTICSEARCH_HOST/$ELASTICSEARCH_HOST/" \
-       -e "s/ELASTICSEARCH_PORT/$ELASTICSEARCH_PORT/" \
-       ${CONFDIR}/${LSCONFIG}
-
+if [ "$ELASTICSEARCH_HOST" == "" ] || [ "$ELASTICSEARCH_PORT" == "" ];then
+  sed -i '/elasticsearch/d' ${CONFDIR}/${LSCONFIG}
+else
+  sed -i -e "s/ELASTICSEARCH_HOST/$ELASTICSEARCH_HOST/" \
+         -e "s/ELASTICSEARCH_PORT/$ELASTICSEARCH_PORT/" \
+         ${CONFDIR}/${LSCONFIG}
+fi
 #===========================================
 
 # change ownner
