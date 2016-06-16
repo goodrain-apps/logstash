@@ -4,6 +4,6 @@ input {
         mode => "client"
         topic => "SERVICE_ID"
         type => "SERVICE_NAME"
-        address => ["ZMQ_IP"]
+        address => ["tcp://ZMQ_IP"]
     }
 }

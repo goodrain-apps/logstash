@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 CONFDIR="/data/config"
 CONFURI="http://config.goodrain.me/apps/logstash"
@@ -14,6 +14,9 @@ ELASTICSEARCH_PORT=${ELASTICSEARCH_PORT:-9200}
 
 # 初始化创建目录
 [ ! -d $CONFDIR ] && mkdir $CONFDIR
+
+# 清理旧input配置文件
+find  $CONFDIR  -name '*_input.conf' -delete
 
 # 获取配置文件
 if [ "$MEMORY_SIZE" == "" ];then
@@ -48,13 +51,17 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
     cp /tmp/input.tpl /data/config/${service_name}_input.conf
     sed -i -e "s/SERVICE_ID/$service_id/" \
     -e "s/SERVICE_NAME/$service_name/" \
-    -e "s/ZMQ_IP/$ZMQ_IP/"
+    -e "s/ZMQ_IP/$ZMQ_IP/" \
     /data/config/${service_name}_input.conf
   done
+  [ -e $CONFDIR/default_input.conf ] && rm -f $CONFDIR/default_input.conf
 else
-cat >> $CONFDIR/default_input.conf << EOF
+cat > $CONFDIR/default_input.conf << EOF
 input {
-  stdin {
+  exec {
+    command => "echo 'Please associate at least one application!'"
+    interval => 10
+    type => "warning"
   }
 }
 EOF
@@ -72,6 +79,8 @@ else
 fi
 #===========================================
 
+# change ownner
+chown logstash.logstash $CONFDIR -R 
 
 # Add logstash as command if needed
 if [ "${1:0:1}" = '-' ]; then
