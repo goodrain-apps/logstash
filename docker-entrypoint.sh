@@ -36,6 +36,8 @@ ali-sh|aws-jp-1)
   ZMQ_IP="10.0.1.11:9243";;
 ucloud-bj-1)
   ZMQ_IP="10.3.1.2:9243";;
+  *)
+  ZMQ_IP=${ZMQ_IP:-0};;
 esac
 
 #========= processing config file ========
@@ -54,7 +56,6 @@ if [ "$REVERSE_DEPEND_SERVICE" != "" ];then
     -e "s/ZMQ_IP/$ZMQ_IP/" \
     /data/config/${service_name}_input.conf
   done
-  [ -e $CONFDIR/default_input.conf ] && rm -f $CONFDIR/default_input.conf
 else
 cat > $CONFDIR/default_input.conf << EOF
 input {
