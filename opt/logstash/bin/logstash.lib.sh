@@ -32,39 +32,39 @@ export LOGSTASH_HOME
 # setting ES_MIN_MEM
 case ${MEMORY_SIZE:-small} in
     "micro")
-       export LS_JAVA_OPTS="-Xms128m -Xmx128m"
+       export LS_JAVA_OPTS="-Xms64m -Xmx64m"
        echo "Optimizing java process for 128M Memory...." >&2
        ;;
     "small")
-       export LS_JAVA_OPTS="-Xms256m -Xmx256m"
+       export LS_JAVA_OPTS="-Xms128m -Xmx128m"
        echo "Optimizing java process for 256M Memory...." >&2
        ;;
     "medium")
-       export LS_JAVA_OPTS="-Xms512m -Xmx512m -XX:NewSize=64m -XX:PermSize=64m"
+       export LS_JAVA_OPTS="-Xms256m -Xmx256m"
        echo "Optimizing java process for 512M Memory...." >&2
        ;;
     "large")
-       export LS_JAVA_OPTS="-Xms1024m -Xmx1024m -XX:NewSize=128m -XX:PermSize=128m"
+       export LS_JAVA_OPTS="-Xms512m -Xmx512m"
        echo "Optimizing java process for 1G Memory...." >&2
        ;;
     "2xlarge")
-       export LS_JAVA_OPTS="-Xms2048m -Xmx2048m -XX:NewSize=256m -XX:PermSize=128m"
+       export LS_JAVA_OPTS="-Xms1g -Xmx1g"
        echo "Optimizing java process for 2G Memory...." >&2
        ;;
     "4xlarge")
-       export LS_JAVA_OPTS="-Xms4096m -Xmx4096m -XX:NewSize=512m -XX:PermSize=256m"
+       export LS_JAVA_OPTS="-Xms2g -Xmx2g"
        echo "Optimizing java process for 4G Memory...." >&2
        ;;
     "8xlarge")
-       export LS_JAVA_OPTS="-Xms8192m -Xmx8192m -XX:NewSize=1024m -XX:PermSize=512m"
+       export LS_JAVA_OPTS="-Xms4g -Xmx4g"
        echo "Optimizing java process for 8G Memory...." >&2
        ;;
     16xlarge|32xlarge|64xlarge)
-       export LS_JAVA_OPTS="-Xms10240m -Xmx10240m -XX:NewSize=2048m -XX:PermSize=1024m"
+       export LS_JAVA_OPTS="-Xms8g -Xmx8g"
        echo "Optimizing java process for biger Memory...." >&2
        ;;
     *)
-       export LS_JAVA_OPTS="-Xms256m -Xmx256m"
+       export LS_JAVA_OPTS="-Xms128m -Xmx128m"
        echo "Optimizing java process for 256M Memory...." >&2
        ;;
 esac
