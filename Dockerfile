@@ -57,4 +57,4 @@ COPY docker-entrypoint.sh /
 VOLUME /data
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["logstash", "agent -f /data/config/ --debug"]
+CMD ["logstash", "agent -f /data/config/"]
